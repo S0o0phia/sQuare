@@ -103,6 +103,7 @@ class KoreanHateSpeechProcessor(object):
 
     @classmethod
     def get_labels(cls):
+        #bias_label_lst = ['none', 'gender', 'personality', 'appearance', 'sexual', 'grade']
         bias_label_lst = ['none', 'gender', 'others']
         hate_label_lst = ['none', 'hate', 'offensive']
         return bias_label_lst, hate_label_lst
