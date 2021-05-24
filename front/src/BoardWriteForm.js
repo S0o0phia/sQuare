@@ -77,7 +77,7 @@ class BoardWriteForm extends Component {
                 alert("글쓰기 실패");
               })
           }
-        } else if (returnData.data.message) {
+        } else if (returnData.data.message != null) {
           axios
             .post('http://localhost:8080/board/save', send_param)
             .then(returnData => {

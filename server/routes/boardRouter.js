@@ -128,7 +128,15 @@ router.post("/update", async (req, res) => {
       }
     );
 
-    res.json({ message: "게시글이 수정 되었습니다." });
+    let obj = {
+      writer: req.body._id,
+      title: req.body.title,
+      content: req.body.content
+    };
+
+    var ret = isSchoolViolence(obj);
+    if (ret != '') res.json({ isViolence: true, message: ret });
+    else res.json({ isViolence: false, message: '' });
   } catch (err) {
     console.log(err);
     res.json({ message: false });
