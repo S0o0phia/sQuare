@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import CKEditor from "ckeditor4-react";
-import { Button, Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import axios from "axios";
 import $ from "jquery";
 import {} from "jquery.cookie";
+import Loading from "./loading";
+
 axios.defaults.withCredentials = true;
 const headers = { withCredentials: true };
 
@@ -35,13 +37,14 @@ class BoardWriteForm extends Component {
 
     if (boardTitle === undefined || boardTitle === "") {
       alert("글 제목을 입력 해주세요.");
-      boardTitle.focus();
+      this.boardTitle.focus();
+      this.setState({ loading: false });
       return;
     } else if (boardContent === undefined || boardContent === "") {
       alert("글 내용을 입력 해주세요.");
-      boardContent.focus();
+      this.setState({ loading: false });
     }
-    
+
     if (this.props.location.query !== undefined) {
       url = "http://localhost:8080/board/update";
       send_param = {
@@ -75,8 +78,9 @@ class BoardWriteForm extends Component {
               })
               .catch(err=> {
                 alert("글쓰기 실패");
+                this.setState({ loading: false });
               })
-          }
+          } else  this.setState({ loading: false });
         } else if (returnData.data.message != null) {
           axios
             .post('http://localhost:8080/board/save', send_param)
@@ -86,9 +90,11 @@ class BoardWriteForm extends Component {
             })
             .catch(err => {
               alert("글쓰기 실패");
+              this.setState({ loading: false });
             })
         } else {
           alert("글쓰기 실패");
+          this.setState({ loading: false });
         }
       })
       //에러
@@ -114,6 +120,8 @@ class BoardWriteForm extends Component {
       marginTop: 5
     };
 
+    const { data, loading } = this.state;
+
     return (
       <div style={divStyle} className="App">
         <h2>글쓰기</h2>
@@ -127,8 +135,8 @@ class BoardWriteForm extends Component {
           data={this.state.data}
           onChange={this.onEditorChange}
         ></CKEditor>
-        <Button style={buttonStyle} onClick={this.writeBoard} block>
-          저장하기
+        <Button style={buttonStyle} onClick={ () => { this.setState({ loading: true }, this.writeBoard) } } block>
+          <div className="loading"> {loading ? <p>스퀘어봇이 열심히 검사중입니다..<Loading /></p> : "저장하기"} </div>
         </Button>
       </div>
     );
