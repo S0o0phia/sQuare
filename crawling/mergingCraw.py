@@ -47,8 +47,8 @@ def getRawStrings(train, test):
                 else:
                     testData.append(wLine)
 
-            trainData = random.sample(trainData, 20000)
-            testData = random.sample(testData, 5000)
+            trainData = random.sample(trainData, 20001)
+            testData = random.sample(testData, 5001)
 
             for element in trainData:
               trainWriter.writerow([element])
