@@ -11,10 +11,10 @@ def main(args):
     #print(args)
 
     tokenizer = load_tokenizer(args)
-    train_dataset = None  # load_examples(args, tokenizer, mode="train")
+    train_dataset = None#load_examples(args, tokenizer, mode="train")
     dev_dataset = None#load_examples(args, tokenizer, mode="dev")
-    test_dataset = None#load_examples(args, tokenizer, mode="test")
-    sQuare_data = load_examples(args, tokenizer, mode="sQuare")
+    test_dataset = load_examples(args, tokenizer, mode="test")
+    sQuare_data = None#load_examples(args, tokenizer, mode="sQuare")
     trainer = Trainer(args,
                       tokenizer,
                       train_dataset,

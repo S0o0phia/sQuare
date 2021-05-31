@@ -249,12 +249,12 @@ class Trainer(object):
         dataset = self.test_dataset
         eval_sampler = SequentialSampler(dataset)
         eval_dataloader = DataLoader(dataset, sampler=eval_sampler, batch_size=self.args.eval_batch_size)
-        '''
+        
         # Eval!
         logger.info("***** Running prediction on test dataset *****")
         logger.info("  Num examples = %d", len(dataset))
         logger.info("  Batch size = %d", self.args.eval_batch_size)
-        '''
+        
         bias_preds = None
         hate_preds = None
 
@@ -306,7 +306,7 @@ class Trainer(object):
 
         # Save training arguments together with the trained model
         torch.save(self.args, os.path.join(self.args.model_dir, 'training_args.bin'))
-#        logger.info("Saving model checkpoint to %s", self.args.model_dir)
+        logger.info("Saving model checkpoint to %s", self.args.model_dir)
 
     def load_model(self):
         # Check whether model exists
