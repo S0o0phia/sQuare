@@ -10,8 +10,9 @@ for JNU Capstone Design, 2021-1
 
 ### V1.2
  - 회원가입 및 로그인, 게시글 작성, 수정, 삭제 및 댓글 작성 가능   
- => 댓글과 필터링 시스템 연동 진행중   
+ ~~=> 댓글과 필터링 시스템 연동 진행중~~   
  - weighted f1 기준 적중률 개선됨   
+ - 2021-1 캡스톤디자인 최종 발표본   
 
 ### References
 [korean-hate-speech-koelectra](https://github.com/monologg/korean-hate-speech-koelectra)   
