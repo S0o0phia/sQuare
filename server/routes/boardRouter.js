@@ -8,7 +8,7 @@ const fs = require('fs');
 const { title } = require("process");
 
 var command = 'python';
-var args = ['./korean-hate-speech-koelectra/main.py', '--model_name_or_path', './korean-hate-speech-koelectra/model', '--model_dir', './korean-hate-speech-koelectra/model', '--sQ_tfile', './temp/tfile.txt', '--sQuare'];
+var args = ['./korean-hate-speech-koelectra/main.py', '--model_name_or_path', './korean-hate-speech-koelectra/model_final', '--model_dir', './korean-hate-speech-koelectra/model_final', '--sQ_tfile', './temp/tfile.txt', '--sQuare', "--data_dir", './korean-hate-speech-koelectra/data/'];
 
 function getContentBuffer(title, content) {
   var contentLines = [];
@@ -65,7 +65,7 @@ function isSchoolViolence(obj) {
 
     if (i == 0) ret = ret.concat("제목에 문제가 있습니다.\n");
     var violence = "\n사유: ".concat(check[i]);
-    violence = violence.replace(",offensive", "을 매개로 불쾌감을 줄 수 있는 표현\n");
+    violence = violence.replace(",offensive", "을 매개로 불쾌감을 줄 수 있는 표현\n\n");
     violence = violence.replace(",hate", "을 매개로 한 혐오 표현\n\n");
 
     violence = violence.replace("none", "언어표현");

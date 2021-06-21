@@ -12,9 +12,9 @@ def main(args):
 
     tokenizer = load_tokenizer(args)
     train_dataset = None#load_examples(args, tokenizer, mode="train")
-    dev_dataset = None#load_examples(args, tokenizer, mode="dev")
-    test_dataset = load_examples(args, tokenizer, mode="test")
-    sQuare_data = None#load_examples(args, tokenizer, mode="sQuare")
+    dev_dataset = None  # load_examples(args, tokenizer, mode="dev")
+    test_dataset = None  # load_examples(args, tokenizer, mode="test")
+    sQuare_data = load_examples(args, tokenizer, mode="sQuare")
     trainer = Trainer(args,
                       tokenizer,
                       train_dataset,
@@ -22,6 +22,7 @@ def main(args):
                       test_dataset,
                       sQuare_data)
 
+    #trainer.evaluate('dev')
     if args.do_train:
         trainer.train()
 
@@ -46,7 +47,6 @@ if __name__ == '__main__':
     parser.add_argument("--dev_file", default="validate.txt", type=str, help="Dev file")
     parser.add_argument("--test_file", default="test.txt", type=str, help="Test file")
     parser.add_argument("--sQ_tfile",  default="tfile.txt", type=str, help="title and content from post")
-    #parser.add_argument("--sQ_cfile",  default="../temp/cfile.txt", type=str, help="Content from post or comment")
 
     parser.add_argument("--sQ_content",  default="", type=str, help="Content from post or comment")
     parser.add_argument("--sQ_title",  default="", type=str, help="title from post")

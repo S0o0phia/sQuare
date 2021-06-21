@@ -59,7 +59,7 @@ class Trainer(object):
         scheduler = get_linear_schedule_with_warmup(optimizer,
                                                     num_warmup_steps=int(t_total * self.args.warmup_proportion),
                                                     num_training_steps=t_total)
-        '''
+        
         # Train!
         logger.info("***** Running training *****")
         logger.info("  Num examples = %d", len(self.train_dataset))
@@ -68,7 +68,7 @@ class Trainer(object):
         logger.info("  Gradient Accumulation steps = %d", self.args.gradient_accumulation_steps)
         logger.info("  Total optimization steps = %d", t_total)
         logger.info("  Logging steps = %d", self.args.logging_steps)
-        '''
+        
         global_step = 0
         tr_loss = 0.0
         best_mean_weighted_f1 = 0.0
@@ -188,11 +188,11 @@ class Trainer(object):
         hate_preds = np.argmax(hate_preds, axis=1)
         result = compute_metrics(bias_preds, hate_preds, bias_out_label_ids, hate_out_label_ids)
         results.update(result)
-        '''
+        
         logger.info("***** Eval results *****")
         for key in sorted(results.keys()):
             logger.info("  %s = %s", key, str(results[key]))
-        '''
+        
         return results
 
     def sQuare(self):
